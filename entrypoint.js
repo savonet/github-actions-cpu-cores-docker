@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
 const { cpus } = require("os");
+const fs = require('fs');
 
-console.log(`::set-output name=count::${cpus().length}`); 
-
+fs.writeFileSync(process.env.GITHUB_ENV, `count=${cpus().length}`);
