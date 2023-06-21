@@ -1,7 +1,11 @@
 FROM node:alpine
 
-COPY entrypoint.js /entrypoint.js
+RUN mkdir /github-actions-cpu-cores-docker
 
-RUN npm install -g @actions/core @actions/github
+COPY entrypoint.js /github-actions-cpu-cores-docker/entrypoint.js
 
-ENTRYPOINT ["/entrypoint.js"]
+WORKDIR /github-actions-cpu-cores-docker/
+
+RUN npm install --save @actions/core @actions/github
+
+ENTRYPOINT ["/github-actions-cpu-cores-docker/entrypoint.js"]
